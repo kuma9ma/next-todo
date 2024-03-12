@@ -1,10 +1,29 @@
+"use client";
+
 import Image from "next/image";
 import AddTask from "./components/AddTask";
 import TodoList from "./components/TodoList";
 import { getAllTodos } from "./api";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  const todos = await getAllTodos();
+
+
+export default function Home() {
+  // const todos = await getAllTodos();
+  // const [todos] = await query("SELECT * FROM `todo-app`.todos");
+
+  const [todos, setTodos] = useState([]);
+  const getTodos = () => {
+    const todos = fetch("http://localhost:3000/api/get");
+    console.log(todos);
+    setTodos(todos as any);
+  }
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+
 
 
   return (
@@ -13,7 +32,7 @@ export default async function Home() {
       <div className="mt-4 w-full max-w-xl">
         <div className="w-full text-center px-8 py-6 bg-white shadow-md rounded-lg">
           <AddTask />
-          <TodoList todos = {todos}/>
+          <TodoList todos={todos} />
         </div>
       </div>
     </main>

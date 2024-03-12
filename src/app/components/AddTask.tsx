@@ -21,8 +21,10 @@ const AddTask = () => {
                 <input type="text" className="w-full border px-4 py-2 rounded-lg"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setTaskTitle(e.target.value)}//ChangeEventとは
                     value={taskTitle} />
-                <button className="w-full px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-400 transition hover:scale-95 duration-300">
-                    Add Task</button>
+                <button
+                    className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-400 transition hover:scale-95 duration-300">
+                    Add Task
+                </button>
             </form>
         </>
     )

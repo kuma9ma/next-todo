@@ -1,11 +1,14 @@
+import { query } from "@/libs/mysql";
 import { Task } from "@/types";
 import { stringify } from "querystring";
 
-// Promise？
+
 export const getAllTodos = async (): Promise<Task[]> => {
-    const res = await fetch(`http://localhost:3001/tasks`,
-        { cache: "no-store" });
-    const todos = res.json();
+    // const res = await fetch(`http://localhost:3001/tasks`,
+    //     { cache: "no-store" });
+    // const todos = res.json();
+
+    const [todos] = await query("SELECT * FROM `todo-app`.todos");
 
     return todos;
 }
@@ -36,14 +39,20 @@ export const editTodo = async (id: string, newText: string): Promise<Task> => {
     return updatedTodo;
 }
 
-export const deleteTodo = async (id: string, newText: string): Promise<Task> => {
-    const res = await fetch(`http://localhost:3001/tasks/${id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-    const deleteTodo = res.json();
+export const deleteTodo = async (id: string): Promise<void> => {
+    // const res = await fetch(`http://localhost:3001/tasks/${id}`, {
+    //     method: "DELETE",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    // });
 
-    return deleteTodo;
+    // const deleteTodo = res.json();
+
+    // return deleteTodo;
+
+    await query("DELETE FROM `todo-app`.todos WHERE id = " + id);
+    
+
+
 }

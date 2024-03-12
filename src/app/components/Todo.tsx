@@ -31,7 +31,11 @@ const Todo = ({ todo }: TodoProps) => {
     }
 
     const handleDelete = async function () {
-        await deleteTodo(todo.id, editedTaskTitle);
+        // await deleteTodo(todo.id, editedTaskTitle);
+        await fetch("http://localhost:3000/api/delete", {
+            method: "POST",
+            body: JSON.stringify({ id: todo.id })
+        });
     }
 
     return (
