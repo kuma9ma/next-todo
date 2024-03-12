@@ -11,7 +11,7 @@ interface TodoProps {
 
 const Todo = ({ todo }: TodoProps) => {
 
-    const ref = useRef<HTMLInputElement>(null);
+    const ref = useRef<HTMLInputElement>(null);//TypeScript
     const [isEditing, setIsEditing] = useState(false);
     const [editedTaskTitle, setEditedTaskTitle] = useState(todo.text);
 
@@ -43,7 +43,7 @@ const Todo = ({ todo }: TodoProps) => {
                         type="text"
                         className="mr-2 py-1 px-2 rounded border border-gray-400"
                         value={editedTaskTitle}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => //React.
                             setEditedTaskTitle(e.target.value)} />
                     : <span>{todo.text}</span>}
                 <div>
